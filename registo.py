@@ -60,46 +60,28 @@ def eliminateEquipment(equipment, name):
     return equipment
 
 def showEquipment(equipment):
-    notas_alunos = {
-    "Ana": [10.5, 12, 15, 14],
-    "João": [8.5, 12.5, 11],
-    "Maria": [16.5, 17, 18, 19, 20],
-    "Rui": [18.5, 15, 16],
-    "Pedro": [14, 19.5, 13.2, 16],
-    "Carla": [9, 11, 10.5, 12],
-    "Sofia": [17, 18.5, 20, 19, 16.2, 14.8],
-    "Miguel": [7.5, 8, 12],
-    "Luís": [13, 14, 15.5],
-    "Juliana": [10, 9.5, 13, 16.7, 14]
-}
-    dummyStr="|{:^15}".format("Nome") #dummyStr é um string com Nome e Nota 1, Nota 2 etc
-    maximoNotas=0
-    for notas in notas_alunos.values():
-        if (len(notas)>maximoNotas):
-            maximoNotas=len(notas)
-    for x in range(1, maximoNotas+1):
-        dummyStr+="|{:^15}".format("Nota "+f"{x}") # preencher dumyStr com N notas(nota 1, nota2.... nota n)
-    dummyStr+="|{:^15}|".format("Media ") #adicionar media no fim
+    dummyStr="|{:^30}".format("Nome") #dummyStr é um string com Nome e Nome 1, Nome 2 etc
+    template={"quantidade":0,"idade":0, "peso":0, "cor":"inserirCor", "desporto":"inserirDesporto", "perigosoBebes":True}
+    # for notas in equipment.values():
+    #     if (len(notas)>maximoNotas):
+    #         maximoNotas=len(notas)
+    for x in range(0, len(equipment)):
+        dummyStr+="|{:^30}".format(equipment.keys()[x]) # preencher dumyStr com N notas(nota 1, nota2.... nota n)
     length=len(dummyStr) #procurar o comprimento dos strings
     print("_"*length) #primeira linha dos _
     print(dummyStr) 
     print("-"*length) #3ª linha com -
-    for x in notas_alunos: #ciclo: iteração dos chaves dentro notas_alunos
-        aluno="" #criar um string que o progama vai preencher
-        lengthNotas=len(notas_alunos[x]) #numero das notas de cada aluno(pois pode ser diferente)
-        for j in range(0, maximoNotas+1): #iterar as notas e +1 para media
-            if j==0: 
-                aluno+="|{:<15}".format(x) #no inicio por o nome
-
-            if j<=lengthNotas-1:    
-                aluno+="|{:^15.2f}".format(notas_alunos[x][j]) #entre "notas" e "media" por as notas proprias com dois casas decimais
-            elif j==maximoNotas:
-                media=sum(notas_alunos[x])/lengthNotas #procurar media das notas
-                aluno+="|{:^15.2f}|".format(media) # adicionar esta media na última parcela
-            else:
-                aluno+="|"+"="*15
-        print(aluno) #imprimir uma linha do aluno x
+    for char in template.keys(): #ciclo: iteração dos chaves dentro notas_alunos
+        characteristic="" #criar um string que o progama vai preencher
+        characteristic+="|{:^30}".format(char)
+        for name in equipment.keys():
+            characteristic+="|{:^30}".format(equipment[name][char])
+        print(characteristic) #imprimir uma linha do aluno x
     print("-"*length) #completar a tabela
+
+
+
+
 
 
 
